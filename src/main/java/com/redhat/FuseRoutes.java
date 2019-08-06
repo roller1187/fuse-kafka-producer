@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FuseRoutes extends RouteBuilder {
+	
 	@Override
 	public void configure() throws Exception {
 		restConfiguration().component("servlet").bindingMode(RestBindingMode.json);
@@ -29,7 +30,7 @@ public class FuseRoutes extends RouteBuilder {
 				
 				log.info("Sending the following message to Kafka topic: {}", message.getBody(String.class));
 			}
-		}).recipientList(simple("kafka:{{kafka.backend.topic}}?sslTruststoreLocation={{spring.kafka.properties.ssl.truststore.location}}&" 
+		}).recipientList(simple("kafka:${sysenv.KAFKA_BACKEND_TOPIC}?sslTruststoreLocation={{spring.kafka.properties.ssl.truststore.location}}&" 
 	            + "sslTruststorePassword={{spring.kafka.properties.ssl.truststore.password}}&"
 				+ "securityProtocol={{spring.kafka.properties.security.protocol}}")).setBody(constant("Message sent successfully."));
 	}
