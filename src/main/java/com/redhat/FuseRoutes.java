@@ -32,6 +32,7 @@ public class FuseRoutes extends RouteBuilder {
 			}
 		}).recipientList(simple("kafka:${sysenv.KAFKA_BACKEND_TOPIC}?sslTruststoreLocation={{spring.kafka.properties.ssl.truststore.location}}&" 
 	            + "sslTruststorePassword={{spring.kafka.properties.ssl.truststore.password}}&"
-				+ "securityProtocol={{spring.kafka.properties.security.protocol}}")).setBody(constant("Message sent successfully."));
+				+ "securityProtocol={{spring.kafka.properties.security.protocol}}"
+				       + "brokers=${sysenv.SPRING_KAFKA_BOOTSTRAP_SERVERS}")).setBody(constant("Message sent successfully."));
 	}
 }
