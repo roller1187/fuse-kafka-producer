@@ -23,6 +23,10 @@ oc new-app redhat-openjdk18-openshift:1.4~https://github.com/roller1187/fuse-kaf
     --env KAFKA_BACKEND_TOPIC=my-topic \
     --env SPRING_KAFKA_BOOTSTRAP_SERVERS=my-cluster-kafka-external-bootstrap.kafka-demo.svc.cluster.local:9094
 ```
+  4. Add ConfigMap to Fuse Producer:
+```sh
+oc set volume dc/fuse-kafka-producer --add --type=configmap --configmap-name=kafka-cert --mount-path=/tmp/certs
+```
 
 *Acrostic example:
 
