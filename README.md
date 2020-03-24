@@ -19,7 +19,7 @@ oc project kafka-$(oc whoami)
 ```
   3. Deploy the service using s2i (Source-2-Image). Don't forget to provide a Kafka topic:
 ```sh
-oc new-app redhat-openjdk18-openshift:1.4~https://github.com/roller1187/fuse-kafka-producer.git \
+oc new-app openjdk-11-rhel7:1.0~https://github.com/roller1187/fuse-kafka-producer.git \
     --env KAFKA_BACKEND_TOPIC=my-topic \
     --env SPRING_KAFKA_BOOTSTRAP_SERVERS=my-cluster-kafka-external-bootstrap.kafka-demo.svc.cluster.local:9094
 ```
